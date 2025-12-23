@@ -140,4 +140,51 @@ public class Main {
     первая строка: число n
     вторая строка: n символов
 #### Программа
+```java
+import java.io.PrintStream;
+import java.util.Scanner;
+public class Main {
+    public static Scanner in = new Scanner(System.in);
+    public static PrintStream out = System.out;
+    public static void main(String[] args) {
+        int n = in.nextInt();
+        char[] a = new char[n];
+        char[] b = new char[n];
+        for (int i = 0; i<n; i++) {
+            a[i] = in.next().charAt(0);
+            b[i] = Character.toLowerCase(a[i]); }
+        int count = 0;
+        char s = b[0];
+        int max = 0;
+        char x = b[0];
+        for (int i = 0; i < n; i++) {
+            if (b[i] == s)
+                count++;
+            else {
+                if (count > max) {
+                    max = count;
+                    x = s;}
+                s = b[i];
+                count = 1;}
+            if (count > 0) {
+                System.out.println(s + ": " + count);
+                if (count > max) {
+                    max = count;
+                    x = s; }}}
+        if (max > 0)
+            System.out.println(x + "- наиболее встречающийся символ (" + max + "раз)");
+    }
+}
+```
 #### Анализ правильности решения
+##### Ввод:
+1) 6
+2) d D q w e r
+##### Вывод:
+d: 1
+d: 2
+q: 1
+w: 1
+e: 1
+r: 1
+d- наиболее встречающийся символ (2раз)
