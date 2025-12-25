@@ -147,33 +147,30 @@ import java.util.Scanner;
 public class Main {
     public static Scanner in = new Scanner(System.in);
     public static PrintStream out = System.out;
+
     public static void main(String[] args) {
         int n = in.nextInt();
         char[] a = new char[n];
         char[] b = new char[n];
-        for (int i = 0; i<n; i++) {
-            a[i] = in.next().charAt(0);
-            b[i] = Character.toLowerCase(a[i]); }
-        int count = 0;
-        char s = b[0];
-        int max = 0;
-        char x = b[0];
+        int[] c = new int[256];
         for (int i = 0; i < n; i++) {
-            if (b[i] == s)
-                count++;
-            else {
-                if (count > max) {
-                    max = count;
-                    x = s;}
-                s = b[i];
-                count = 1;}
-            if (count > 0) {
-                System.out.println(s + ": " + count);
-                if (count > max) {
-                    max = count;
-                    x = s; }}}
-        if (max > 0)
-            System.out.println(x + "- наиболее встречающийся символ (" + max + "раз)");
+            a[i] = in.next().charAt(0);
+            b[i] = Character.toLowerCase(a[i]);
+            c[b[i]]++;
+        }
+        char x = ' ';
+        int max = 0;
+        for (int i = 0; i < c.length; i++) {
+            if (c[i] > max) {
+                max = c[i];
+                x = (char) i;
+            }
+        }
+        for (int i = 0; i < c.length; i++) {
+            if (c[i] > 0) {
+                char d = (char) i;
+                System.out.println(d+ ": " + c[i] + " раз");}}
+        out.print("Наиболее часто встречающийся: " + x);
     }
 }
 ```
@@ -182,7 +179,6 @@ public class Main {
 1) 6
 2) d D q w e r
 ##### Вывод:
-d: 1
 d: 2
 q: 1
 w: 1
